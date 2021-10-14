@@ -45,6 +45,11 @@ app.get('/admin', (req, res) => {
     res.render('admin', { userid });
 });
 
+// Index HTML
+app.get('/', (req, res) => {
+    res.render('login');
+});
+
 // Delete All Users
 app.post('/admin/deleteUsers', async (req, res) => {
     await User.deleteMany({});
@@ -56,7 +61,6 @@ app.post('/admin/deleteMessages', async (req, res) => {
     await Message.deleteMany({});
     console.log('Messages deleted');
 });
-
 
 // Chat Page
 app.get('/chatroom', async (req, res) => {
