@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="header">
+        <ul>
+            <li>TalkR</li>
+        </ul>
+        <ul>
+            <% if (!userid) { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% } %>
+            <% if (userid) { %>
+                <li><a href="/logout">Logout</a></li>
+            <% } %>
+        </ul>
+    </div>
+    <main>
+        <% if (messages != '') { %>
+            <h1 class="message-box"><%= messages %></h1>
+        <% } %>
+        <div class="login-form-body">
+            <h1>Register</h1>
+            <form action="/register" method="POST">
+                <label for="username">Username : </label>
+                <input type="text" name="username" id="username" required>
+                <br>
+                <label for="confirmUsername">Confirm Username : </label>
+                <input type="text" name="confirmUsername" id="confirmUsername" required>
+                <br>
+                <label for="password">Password : </label>
+                <input type="password" name="password" id="password" required>
+                <br>
+                <label for="confirmPassword">Confirm Username : </label>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+                <br>
+                <button>Submit</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

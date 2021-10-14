@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="chatroom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>TalkR</title>
+</head>
+<body>
+    <div class="header">
+        <ul>
+            <li>TalkR</li>
+        </ul>
+        <ul>
+            <% if (!userid) { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% } %>
+            <% if (userid) { %>
+                <li><a href="/logout">Logout</a></li>
+            <% } %>
+        </ul>
+    </div>
+    <main>
+        <% if (messages) { %>
+            <% for (message of messages) { %>
+                <div <% if (message.username === userid) { %>
+                    class="user-message-box-current"
+                <% } else { %>
+                    class="user-message-box"
+                <% } %>
+                >
+                    <h1><%=message.username%></h1>
+                    <h2>"<%=message.text%>"</h2>
+                </div>
+            <% } %>
+        <% } %>
+        <form action="/chatroom" method="POST">
+            <input type="text" name="message" placeholder="Aa..." class="message-input">
+        </form>
+    </main>
+</body>
+</html>
